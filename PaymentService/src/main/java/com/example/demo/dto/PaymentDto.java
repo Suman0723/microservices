@@ -9,14 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderResponseDto {
+public class PaymentDto {
 
-    private Long orderId;
-
-    private String productName;
-
-    private UserDto user;
-    
-    private PaymentDto payment;
-
+    private Long paymentId;
+    private String paymentStatus;
+    private Double amount;
 }

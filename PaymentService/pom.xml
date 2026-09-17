@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>03-OrderServiece</artifactId>
+	<artifactId>06-paymentService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>03-OrderServices</name>
+	<name>06-PaymentService</name>
 	<description>Appliction</description>
 	<url/>
 	<licenses>
@@ -46,7 +46,6 @@
 </dependency>
 
 <dependency>
-
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
@@ -74,10 +73,6 @@
 <dependency>
 <groupId>org.springframework.cloud</groupId>
 <artifactId>spring-cloud-starter-openfeign</artifactId>
-</dependency>
-<dependency>
-<groupId>io.github.resilience4j</groupId>
-<artifactId>resilience4j-spring-boot3</artifactId>
 </dependency>
 
 		<dependency>
