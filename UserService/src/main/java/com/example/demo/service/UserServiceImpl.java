@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
     }
     
     @Override
+    @Transactional
     public UserResponseDto createUser(UserCreateRequest request) {
 
         User user = User.builder()

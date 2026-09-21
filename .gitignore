@@ -1,0 +1,29 @@
+# Maven build output
+target/
+**/target/
+
+# STS / Eclipse files
+.metadata/
+**/.settings/
+**/.classpath
+**/.project
+**/.factorypath
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Visual Studio Code
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp

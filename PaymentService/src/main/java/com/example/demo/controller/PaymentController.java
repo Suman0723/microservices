@@ -7,17 +7,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/payment")
 public class PaymentController {
 
-    @GetMapping("/{orderId}")
-    public PaymentDto getPaymentByOrderId( @PathVariable Long orderId) 
-     throws InterruptedException
-    {
-    	
-    	 Thread.sleep(10000);
+	@GetMapping("/{orderId}")
+	public PaymentDto getPaymentByOrderId(@PathVariable Long orderId) throws InterruptedException {
 
-        return PaymentDto.builder()
-                .paymentId(1001L)
-                .paymentStatus("SUCCESS")
-                .amount(1500.00)
-                .build();
-    }
+		Thread.sleep(1000);
+
+		return PaymentDto.builder().paymentId(1001L).paymentStatus("SUCCESS").amount(1500.00).build();
+	}
 }
