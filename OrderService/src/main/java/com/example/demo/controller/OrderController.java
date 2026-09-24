@@ -14,25 +14,24 @@ import com.example.demo.dto.OrderResponseDto;
 import com.example.demo.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/orders")
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderService orderService;
+	private final OrderService orderService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<OrderResponseDto> getOrder(@PathVariable Long id) {
+	@GetMapping("/{id}")
+	public ResponseEntity<OrderResponseDto> getOrder(@PathVariable Long id) {
 
-        return ResponseEntity.ok(orderService.getOrder(id));
-    }
-    
-    @PostMapping
-    public ResponseEntity<OrderResponseDto> createOrder(
-    @RequestBody OrderCreateRequest request) {
-    
-    return ResponseEntity.status(HttpStatus.CREATED)
-    .body(orderService.createOrder(request));
-    }
+		return ResponseEntity.ok(orderService.getOrder(id));
+	}
+
+	@PostMapping
+	public ResponseEntity<OrderResponseDto> createOrder(@Valid @RequestBody OrderCreateRequest request) {
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(request));
+	}
 }

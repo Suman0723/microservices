@@ -15,6 +15,7 @@ import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
+import feign.FeignException;
 
 @Service
 @RequiredArgsConstructor
@@ -73,6 +74,10 @@ public class OrderServiceImpl implements OrderService {
 
 		while (cause != null) {
 
+			if (cause instanceof FeignException.NotFound notFoundException) {
+				throw notFoundException;
+			}
+
 			if (cause instanceof DependencyUnavailableException dependencyUnavailableException) {
 				throw dependencyUnavailableException;
 			}
@@ -86,9 +91,7 @@ public class OrderServiceImpl implements OrderService {
 			cause = cause.getCause();
 		}
 
-		return OrderResponseDto.builder().productName(request.getProductName())
-				.payment(PaymentDto.builder().paymentStatus("A dependent service is temporarily unavailable").build())
-				.build();
+		throw new DependencyUnavailableException("Payment Service is temporarily unavailable");
 	}
 
 }

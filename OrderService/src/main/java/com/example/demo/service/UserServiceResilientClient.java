@@ -10,6 +10,7 @@ import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import feign.FeignException;
 
 @Service
 @Slf4j
@@ -31,6 +32,17 @@ public class UserServiceResilientClient {
 	public UserDto getUserFallback(Long userId, Throwable ex) {
 
 		log.error("User Service fallback executed for userId: {}. Reason: {}", userId, ex.getMessage());
+
+		Throwable cause = ex;
+
+		while (cause != null) {
+
+			if (cause instanceof FeignException.NotFound notFoundException) {
+				throw notFoundException;
+			}
+
+			cause = cause.getCause();
+		}
 
 		throw new DependencyUnavailableException("User Service is temporarily unavailable");
 	}
